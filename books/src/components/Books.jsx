@@ -4,14 +4,7 @@ import Book from "./book";
 
 
 class Books extends Component{
-    state={
-        asin:""
-    }
-    handleBook =(newAsin)=>{
-        this.setState({
-          asin: newAsin,
-        })
-    }    
+     
     render(){
         return(
             
@@ -23,7 +16,7 @@ class Books extends Component{
                     this.props.books.slice(0,6).map(mappedBook=>(
                         <Col className="mb-2" xs={6} key={mappedBook.asin}>
                         <Book book={mappedBook}
-                        handleBook={this.handleBook}
+                        handleBook={this.props.handleBook}
                         />
                         </Col>
 

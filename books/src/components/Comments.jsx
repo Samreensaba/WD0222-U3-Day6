@@ -7,9 +7,16 @@ class Comments extends Component{
         reviews: []
     }
     componentDidMount = () => {
+        if(this.props.asin)
         this.reviewsFetch(this.props.asin)
     }
-
+    componentDidUpdate = (prevProps, prevState)=>{
+        if(this.props.asin&&prevProps.asin !== this.props.asin){
+            this.reviewsFetch(this.props.asin)
+        }
+        
+    }
+    
     reviewsFetch= async(asin)=>{
         try {
            const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${asin}`,{
@@ -24,6 +31,7 @@ class Comments extends Component{
            })
            }else{
             const error = await response.text()
+            console.log(error)
            } 
         } catch (error) {
             console.log(error)
